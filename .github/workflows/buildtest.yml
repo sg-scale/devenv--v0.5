@@ -13,7 +13,7 @@ jobs:
         os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v7
     - uses: cachix/install-nix-action@v18
       with:
         extra_nix_config: |
@@ -33,7 +33,7 @@ jobs:
       examples: ${{ steps.set-examples.outputs.examples }}                                                                    
     steps:                                                                                                              
       - name: Checkout base repo                                                                                        
-        uses: actions/checkout@v3                                                                                      
+        uses: actions/checkout@v7                                                                                      
       - id: set-examples                                                                                                  
         run: |                                                                                                          
           json=$(tree -J -L 1 examples | jq -c '[.[0].contents[] | .name]')
@@ -47,7 +47,7 @@ jobs:
         example: ${{ fromJSON(needs.generate-examples.outputs.examples) }}
     runs-on: ${{ matrix.os }}
     steps:
-     - uses: actions/checkout@v3
+     - uses: actions/checkout@v7
      - uses: cachix/install-nix-action@v18
        with:
          extra_nix_config: |
